@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Restaurant Order</title>
+    <script src="https://kit.fontawesome.com/34ce5b6af8.js" crossorigin="anonymous"></script>
+    <style>
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Edge (Chromium-based), Opera */
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+
+      /* Styles for draggable tabs - direct Tailwind replacement is complex, keeping a small custom style */
+      .tabs.active {
+        cursor: grabbing;
+      }
+
+      /* Apply Inter font, as cdn.tailwindcss.com doesn't automatically load Google Fonts */
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="pt-16 bg-gray-100 text-gray-800">
+    <!-- Navbar -->
+    <nav
+      class="fixed top-0 left-0 right-0 h-14 bg-white shadow flex items-center justify-between px-4 border-b border-green-200 z-50"
+    >
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 bg-gray-100 rounded-full overflow-hidden">
+          <img src="/images/logo/logo.png" class="h-full w-full object-cover" />
+        </div>
+        <span class="text-xl font-extrabold text-green-700">Hello!</span>
+      </div>
+      <div class="flex gap-6">
+        <a
+          href="../waiter/index.html"
+          class="text-green-700 hover:text-green-600 flex items-center gap-1"
+        >
+          <svg
+            class="h-6 w-6 stroke-current"
+            fill="none"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10.5Z"
+            />
+          </svg>
+          <span class="hidden sm:inline">Home</span>
+        </a>
+        <a href="#" class="hover:text-green-600 flex items-center gap-1">
+          <svg
+            class="h-6 w-6 stroke-current"
+            fill="none"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 4h16v16H4zm4 4h8m-8 4h8m-8 4h4"
+            />
+          </svg>
+          <span class="hidden sm:inline">Orders</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Main Layout -->
+    <div class="flex h-[calc(100vh-3.5rem)]">
+      <!-- Left Sidebar -->
+      <aside class="w-64 bg-white p-4 rounded-xl overflow-y-auto">
+        <h2 class="font-bold text-gray-600 text-xl mb-4 mt-4">Tables</h2>
+        <ul class="space-y-2">
+          <li
+          onclick="toggleTableActive(this, 'Table 1')"
+            class="table-item flex justify-between items-center p-2 rounded hover:bg-green-50 text-green-700 font-semibold cursor-pointer"
+          >
+            Table 1 <span><i class="fa-solid fa-clock fa-lg" style="color: #e2e5e9;"></i></span>
+          </li>
+          <hr>
+          <li
+          onclick="toggleTableActive(this, 'Table 2')"
+            class="table-item flex justify-between items-center p-2 rounded hover:bg-green-50 text-green-700 font-semibold cursor-pointer"
+          >
+            Table 2 <span><i class="fa-solid fa-circle-check fa-lg" style="color: #3C8750;"></i></span>
+          </li>
+          <hr>
+         <!-- click table-6  -->
+          <li
+          onclick="toggleTableActive(this, 'Table 6')"
+            class="table-item flex justify-between items-center p-2 bg-green-100 rounded text-green-700 font-semibold cursor-pointer"
+          >
+            Table 6 <span><i class="fa-solid fa-circle-check fa-lg" style="color: #3C8750;"></i></span>
+            </li>
+            <hr>
+         
+          <li
+          onclick="toggleTableActive(this, 'Table 9')"
+            class="table-item flex justify-between items-center p-2 rounded text-green-700 font-semibold cursor-pointer"
+          >
+            Table 9
+          </li>
+
+          <hr>
+        </ul>
+      </aside>
+
+      <!-- Main Content -->
+      <main
+        id="mainContent"
+        class="flex-1 p-6 overflow-y-auto space-y-6 relative no-scrollbar"
+      >
+        <h2 class="font-bold text-green-600 text-xl mb-4">Orders</h2>
+        <!-- Order Summary -->
+        <section class="bg-white rounded-xl p-4 shadow space-y-4" id="order">
+          <div class="flex justify-between items-center">
+            <h3 class="font-semibold text-lg">
+              🎟️ Order No: <span class="font-bold">123456789</span>
+            </h3>
+            <div
+              class="text-sm px-3 py-1 rounded-full font-semibold bg-green-600 text-white"
+            >
+              Delivered
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex items-center gap-4">
+              <img
+                src="../images/logo/logo.png"
+                class="rounded-lg w-16 h-16 object-cover"
+              />
+              <div class="flex justify-between flex-1">
+                <span>Croissant</span><strong>4</strong>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <img
+                src="../images/logo/logo.png"
+                class="rounded-lg w-16 h-16 object-cover"
+              />
+              <div class="flex justify-between flex-1">
+                <span>Croissant</span><strong>4</strong>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <img
+                src="../images/logo/logo.png"
+                class="rounded-lg w-16 h-16 object-cover"
+              />
+              <div class="flex justify-between flex-1">
+                <span>Croissant</span><strong>4</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-between text-sm text-gray-500 border-t pt-2">
+            <span>22/04/2024 at 2 PM</span>
+            <span class="font-bold text-black">21000 MMK</span>
+          </div>
+        </section>
+        <!-- empty order -->
+        <div id="emptyOrderSection" class="hidden flex flex-col items-center justify-center h-full text-center space-y-4">
+            <img src="../images/logo/logo.png" alt="Empty Table" class="w-72" />
+            <p class="text-gray-600 max-w-md">
+              There may be no customers at the table, or they may not have ordered yet.
+              If you'd like to choose your menu yourself, you can start your order now.
+            </p>
+            <button
+              onclick="startOrder()"
+              class="bg-green-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-700"
+            >
+              Start Order
+            </button>
+          </div>
+
+        <!-- Add-On Button -->
+        <div class="text-right" id="add-on-btn">
+          <button
+            onclick="showAddOn()"
+            class="bg-green-700 text-white font-bold px-6 py-3 rounded-full hover:bg-green-800"
+          >
+            Add-On Order
+          </button>
+        </div>
+
+        <!-- Add-On Content: Menu + Cart (initially hidden) -->
+        <div id="addOnSection" class="hidden">
+          <h2 class="font-bold text-green-600 text-xl mb-4">Menus</h2>
+
+          <!-- Menu Tabs -->
+          <div
+            class="overflow-x-auto whitespace-nowrap pb-2 space-x-2 flex no-scrollbar"
+          >
+            <button
+              class="px-4 py-1 rounded-full bg-green-100 text-green-800 font-semibold"
+            >
+              Foods
+            </button>
+            <button
+              class="px-4 py-1 rounded-full bg-gray-100 text-gray-700 font-semibold"
+            >
+              Cakes
+            </button>
+            <button
+              class="px-4 py-1 rounded-full bg-gray-100 text-gray-700 font-semibold"
+            >
+              Drinks
+            </button>
+            <button
+              class="px-4 py-1 rounded-full bg-gray-100 text-gray-700 font-semibold"
+            >
+              Rice and Curry
+            </button>
+            <button
+              class="px-4 py-1 rounded-full bg-gray-100 text-gray-700 font-semibold"
+            >
+              Others
+            </button>
+          </div>
+
+          <!-- Menu Items -->
+          <div
+            class="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[300px] overflow-y-auto no-scrollbar mt-4 pr-2"
+          >
+          <div class="bg-white p-4 rounded-lg shadow h-[13.5rem]">
+            <img
+              src="../images/logo/logo.png"
+              class="rounded-lg mb-2 w-full h-24 object-cover"
+            />
+            <h4 class="text-center font-semibold text-sm">Sliced Bread</h4>
+            <h4 class="text-center text-sm">3,000 MMK</h4>
+            <button
+              onclick="addToCart('Sliced Bread', 3000)"
+              class="mt-2 bg-green-600 text-white px-3 py-1 rounded-full w-full text-sm font-semibold hover:bg-green-700"
+            >
+              Add to Cart
+            </button>
+          </div>
+          <div class="bg-white p-4 rounded-lg shadow h-[13.5rem]">
+            <img
+              src="../images/logo/logo.png"
+              class="rounded-lg mb-2 w-full h-24 object-cover"
+            />
+            <h4 class="text-center font-semibold text-sm">Sliced Bread 2</h4>
+            <h4 class="text-center text-sm">3,000 MMK</h4>
+            <button
+              onclick="addToCart('Sliced Bread 2', 3000)"
+              class="mt-2 bg-green-600 text-white px-3 py-1 rounded-full w-full text-sm font-semibold hover:bg-green-700"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+          
+
+          
+      </main>
+
+      <!-- Cart -->
+      <aside
+        id="cartPanel"
+        onclick="RemoveAddon()"
+        class="hidden w-72 bg-gray-100 p-6 border-l h-full overflow-y-auto"
+      >
+      <div class="flex ">
+        <h2 class="text-xl font-bold text-gray-800 mb-2 grow">Cart</h2>
+        <p id="cartTableNumber" class="text-green-700 text-xl font-semibold mb-2">Table 6</p>
+      </div>
+        
+        <p class="text-sm text-gray-500">
+          There are currently no orders in the cart.
+        </p>
+      </aside>
+    </div>
+
+    <!-- success modal -->
+    <div
+    class="fixed inset-0 bg-black/50 flex justify-center items-center z-[1000] hidden"
+    id="successModal"
+  >
+    <div
+      class="bg-white rounded-xl p-6 text-center max-w-xs w-[90%] relative"
+    >
+      <div
+        class="absolute top-2.5 right-4 text-xl cursor-pointer text-gray-400 hover:text-gray-600"
+        onclick="closeModal()"
+      >
+        &times;
+      </div>
+      <h3 class="mb-2.5 text-xl font-semibold">Success</h3>
+      <p class="text-sm text-gray-600 mb-5">
+        Your order has been successfully placed and will be prepared soon.
+      </p>
+      <button
+        class="bg-green-700 text-white border-none py-2.5 px-5 rounded-full font-bold cursor-pointer hover:bg-green-800 transition"
+        onclick="goToStatus()"
+      >
+        Go to Order Status
+      </button>
+    </div>
+  </div>
+  <script>
+    const cart = {};
+    
+    function showAddOn() {
+      document.getElementById("addOnSection").classList.remove("hidden");
+      document.getElementById("cartPanel").classList.remove("hidden");
+      const addOnBtn = document.getElementById("add-on-btn");
+  addOnBtn.classList.add("hidden");
+  addOnBtn.style.display = "none";    
+ }
+    
+    function RemoveAddon() {
+      document.getElementById("addOnSection").classList.add("hidden");
+      document.getElementById("cartPanel").classList.add("hidden");
+    }
+    
+    function addToCart(itemName, price) {
+      if (cart[itemName]) {
+        cart[itemName].quantity += 1;
+      } else {
+        cart[itemName] = { name: itemName, price: price, quantity: 1 };
+      }
+      renderCart();
+    }
+    
+    function changeQuantity(itemName, delta) {
+      if (cart[itemName]) {
+        cart[itemName].quantity += delta;
+        if (cart[itemName].quantity <= 0) {
+          delete cart[itemName];
+        }
+        renderCart();
+      }
+    }
+    
+    function renderCart() {
+      const cartPanel = document.getElementById("cartPanel");
+      cartPanel.innerHTML = `
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-bold text-gray-800">Cart</h2>
+          <p id="cartTableNumber" class="text-green-700 text-xl font-semibold">Table 6</p>
+        </div>
+      `;
+    
+      const items = Object.values(cart);
+    
+      if (items.length === 0) {
+        cartPanel.innerHTML += `<p class="text-sm text-gray-500">There are currently no orders in the cart.</p>`;
+        return;
+      }
+    
+      items.forEach(item => {
+        cartPanel.innerHTML += `
+          <div class="flex items-center gap-2 mb-3 bg-white p-2 rounded-lg">
+            <img src="../images/logo/logo.png" class="w-12 h-12 object-cover rounded-md" />
+            <div class="flex-1">
+              <p class="font-medium text-sm">${item.name}</p>
+              <p class="font-medium text-sm">${item.price} MMK</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="changeQuantity('${item.name}', -1)" class="bg-red-500 text-white w-6 h-6 rounded-full text-xs flex items-center justify-center">−</button>
+              <span class="font-bold text-sm">${item.quantity}</span>
+              <button onclick="changeQuantity('${item.name}', 1)" class="bg-green-500 text-white w-6 h-6 rounded-full text-xs flex items-center justify-center">+</button>
+            </div>
+          </div>
+        `;
+      });
+    
+      const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    
+      cartPanel.innerHTML += `
+        <div class="mt-4 flex justify-between text-lg font-semibold">
+          <span>Total</span>
+          <span>${total.toLocaleString()} MMK</span>
+        </div>
+        <button onclick="confirmOrder()" class="mt-4 bg-green-700 hover:bg-green-800 text-white font-semibold w-full py-3 rounded-full">
+          Confirm Order
+        </button>
+      `;
+    }
+    
+    function selectTable(tableId) {
+      const hasOrder = tableId !== 'Table 9';
+      document.getElementById("cartTableNumber").textContent = tableId;
+    
+      document.getElementById("addOnSection").classList.add("hidden");
+      document.getElementById("cartPanel").classList.add("hidden");
+      const addOnBtn = document.getElementById("add-on-btn");
+  addOnBtn.classList.add("hidden");
+  addOnBtn.style.display = "none";     
+    document.getElementById("emptyOrderSection").classList.add("hidden");
+    
+      if (hasOrder) {
+        document.getElementById("order").classList.remove("hidden");
+      } else {
+        document.getElementById("order").classList.add("hidden");
+        document.getElementById("emptyOrderSection").classList.remove("hidden");
+      }
+    }
+    
+    function startOrder() {
+      document.getElementById("emptyOrderSection").classList.add("hidden");
+      document.getElementById("addOnSection").classList.remove("hidden");
+      document.getElementById("cartPanel").classList.remove("hidden");
+      const addOnBtn = document.getElementById("add-on-btn");
+  addOnBtn.classList.add("hidden");
+  addOnBtn.style.display = "none"; 
+    }
+    
+    function confirmOrder() {
+      const modal = document.getElementById("successModal");
+    
+      const addOnBtn = document.getElementById("add-on-btn");
+  addOnBtn.classList.add("hidden");
+  addOnBtn.style.display = "none"; 
+      document.getElementById("addOnSection").classList.add("hidden");
+      document.getElementById("order").classList.add("hidden");
+      document.getElementById("cartPanel").classList.add("hidden");
+    
+      const h2s = document.getElementById("mainContent").getElementsByTagName('h2');
+      if (h2s.length > 0) h2s[0].classList.add("hidden");
+    
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+    
+    function closeModal() {
+      const modal = document.getElementById("successModal");
+      modal.classList.add("hidden");
+    }
+    
+    function goToStatus() {
+      const modal = document.getElementById("successModal");
+      modal.classList.add("hidden");
+    
+      document.getElementById("order").classList.remove("hidden");
+      document.getElementById("addOnSection").classList.add("hidden");
+      document.getElementById("cartPanel").classList.add("hidden");
+      document.getElementById("emptyOrderSection").classList.add("hidden");
+      const addOnBtn = document.getElementById("add-on-btn");
+  addOnBtn.classList.remove("hidden");
+  addOnBtn.style.display = "block"; 
+    }
+    function toggleTableActive(element, tableId) {
+  const tables = document.querySelectorAll('.table-item');
+ 
+  tables.forEach(el =>{
+    console.log(tables)
+    el.classList.remove('bg-green-100')});
+
+  element.classList.add('bg-green-100');
+
+  selectTable(tableId);
+}
+
+    </script>
+  </body>
+</html>

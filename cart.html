@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart Page</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .no-scrollbar::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Edge (Chromium-based), Opera */
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge (legacy) */
+        scrollbar-width: none; /* Firefox */
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-white text-gray-800 flex flex-col h-screen">
+    <nav class="fixed inset-x-0 top-0 z-50 bg-white border-b border-green-200">
+      <div class="flex h-14 items-center justify-between px-4 sm:px-6">
+        <div class="flex items-center space-x-3">
+          <div class="h-9 w-9 rounded-full bg-white overflow-hidden">
+            <img
+              src="/images/logo/logo.png"
+              alt="Logo"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <span class="text-xl font-extrabold text-green-700">Hello!</span>
+        </div>
+
+        <div class="flex items-center space-x-6">
+          <a
+            href="#"
+            class="flex items-center hover:text-green-600 transition-colors duration-200"
+          >
+            <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-10.5Z"
+              />
+            </svg>
+            <span class="hidden sm:inline ml-2">Home</span>
+          </a>
+
+          <a
+            href="#"
+            class="flex items-center text-green-700 hover:text-green-600 transition-colors duration-200"
+          >
+            <svg
+              class="h-6 w-6 stroke-current"
+              fill="none"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 4h16v16H4zm4 4h8m-8 4h8m-8 4h4"
+              />
+            </svg>
+            <span class="hidden sm:inline ml-2">Orders</span>
+          </a>
+
+          <a
+            href="#"
+            class="flex items-center hover:text-green-600 transition-colors duration-200"
+          >
+            <svg
+              class="h-6 w-6 stroke-current"
+              fill="none"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6 6 0 0 0-5-5.917V4a1 1 0 1 0-2 0v1.083A6 6 0 0 0 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0a3 3 0 0 1-6 0"
+              />
+            </svg>
+            <span class="hidden sm:inline ml-2">Alerts</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flex-1 overflow-hidden pt-14 flex flex-col w-full">
+      <div
+        class="text-2xl font-bold px-4 sm:px-6 bg-white z-20 sticky top-5 w-full border-b border-gray-200 text-green-700"
+      >
+        Cart
+      </div>
+
+      <div class="flex-1 overflow-y-auto no-scrollbar px-4 sm:px-6 pb-4 pt-10">
+        <div id="cart-items" class="pt-1"></div>
+      </div>
+
+      <div class="px-4 sm:px-6 py-4">
+        <div
+          class="border border-gray-100 rounded-xl p-4 mt-4 mb-8 bg-white shadow-sm"
+        >
+          <div class="flex justify-between font-bold text-xl mb-4">
+            <span>Total</span>
+            <span id="total-price">0 MMK</span>
+          </div>
+          <div class="flex gap-2.5">
+            <button
+              class="flex-1 py-3 px-4 rounded-full font-bold border-none cursor-pointer bg-green-700 text-white hover:bg-green-800 transition-colors duration-200"
+              onclick="gotoCheckout()"
+            >
+              Checkout
+            </button>
+            <button
+              class="flex-1 py-3 px-4 rounded-full font-bold border border-green-700 bg-white text-green-700 hover:bg-green-50 transition-colors duration-200"
+              onclick="goBack()"
+            >
+              Back
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Using the 6-item "Croissant" cart for 72,000 MMK total as per your second screenshot
+      const cart = [
+        {
+          name: "Croissant",
+          price: 3000,
+          qty: 4,
+          img: "/images/logo/logo.png",
+        },
+        {
+          name: "Croissant",
+          price: 3000,
+          qty: 4,
+          img: "/images/logo/logo.png",
+        },
+        {
+          name: "Croissant",
+          price: 3000,
+          qty: 4,
+          img: "/images/logo/logo.png",
+        },
+        {
+          name: "Croissant",
+          price: 3000,
+          qty: 4,
+          img: "/images/logo/logo.png",
+        },
+        {
+          name: "Croissant",
+          price: 3000,
+          qty: 4,
+          img: "/images/logo/logo.png",
+        },
+        {
+          name: "Croissant",
+          price: 3000,
+          qty: 4,
+          img: "/images/logo/logo.png",
+        },
+      ];
+
+      function renderCart() {
+        const container = document.getElementById("cart-items");
+        container.innerHTML = "";
+        let total = 0;
+
+        cart.forEach((item, index) => {
+          total += item.price * item.qty;
+          const div = document.createElement("div");
+          // `p-2.5` for internal padding. No external horizontal margins on items themselves.
+          div.className =
+            "flex items-center bg-gray-50 rounded-xl p-2.5 mb-3.5 gap-3.5 flex-wrap sm:flex-nowrap shadow-sm";
+          div.innerHTML = `
+            <img src="${item.img}" alt="${
+            item.name
+          }" class="w-20 h-20 object-cover rounded-lg">
+            <div class="flex-grow w-full sm:w-auto">
+              <h4 class="text-base font-semibold mb-1">${item.name}</h4>
+              <p class="text-gray-600 text-sm mb-2.5">${item.price.toLocaleString()} MMK /a piece</p>
+              <div class="flex items-center gap-2.5 bg-gray-100 rounded-full py-1 px-2.5">
+                <button onclick="changeQty(${index}, -1)" class="bg-transparent border-none text-lg text-green-700 cursor-pointer p-0 select-none hover:text-green-800 transition-colors duration-200">−
+                </button>
+                <span class="text-base font-medium">${item.qty}</span>
+                <button onclick="changeQty(${index}, 1)" class="bg-transparent border-none text-lg text-green-700 cursor-pointer p-0 select-none hover:text-green-800 transition-colors duration-200">+
+                </button>
+              </div>
+            </div>
+            <div class="text-xl text-green-700 cursor-pointer hover:text-red-600 transition-colors duration-200" onclick="removeItem(${index})">🗑️</div>
+          `;
+          container.appendChild(div);
+        });
+
+        document.getElementById(
+          "total-price"
+        ).innerText = `${total.toLocaleString()} MMK`;
+      }
+
+      function changeQty(index, delta) {
+        if (cart[index].qty + delta > 0) {
+          cart[index].qty += delta;
+        } else if (cart[index].qty + delta === 0) {
+          cart.splice(index, 1);
+        }
+        renderCart();
+      }
+
+      function removeItem(index) {
+        cart.splice(index, 1);
+        renderCart();
+      }
+
+      function gotoCheckout() {
+        window.location.href = "takeaway_checkout.html";
+      }
+
+      function goBack() {
+        window.history.back();
+      }
+
+      renderCart();
+    </script>
+  </body>
+</html>

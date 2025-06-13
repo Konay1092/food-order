@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tailwind v4.1 Play CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Responsive Icon/Text Navbar</title>
+    <style>
+      /* Ensure html and body take full viewport height and hide global scrollbar */
+      html,
+      body {
+        height: 100%; /* Make html and body take 100% of the viewport height */
+        overflow: hidden; /* Hide the main browser scrollbar */
+      }
+
+      /* Custom scrollbar hiding for specific elements (like your content div) */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Edge (Chromium-based), Opera */
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge (legacy) */
+        scrollbar-width: none; /* Firefox */
+      }
+    </style>
+  </head>
+  <body class="bg-white text-gray-800">
+    <!-- NAVBAR -->
+    <nav class="fixed inset-x-0 top-0 z-50 bg-white border-b border-green-200">
+      <div class="flex h-14 items-center justify-between px-4 sm:px-6">
+        <div class="flex items-center space-x-3">
+          <div class="h-9 w-9 rounded-full bg-black"></div>
+          <span class="text-xl font-extrabold text-green-700">Hello!</span>
+        </div>
+
+        <div class="flex items-center space-x-6">
+          <a href="#" class="flex items-center hover:text-green-600 transition">
+            <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-10.5Z"
+              />
+            </svg>
+            <span class="hidden sm:inline ml-2">Home</span>
+          </a>
+
+          <a
+            href="#"
+            class="flex items-center text-green-700 hover:text-green-600 transition"
+          >
+            <svg
+              class="h-6 w-6 stroke-current"
+              fill="none"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 4h16v16H4zm4 4h8m-8 4h8m-8 4h4"
+              />
+            </svg>
+            <span class="hidden sm:inline ml-2">Orders</span>
+          </a>
+
+          <a href="#" class="flex items-center hover:text-green-600 transition">
+            <svg
+              class="h-6 w-6 stroke-current"
+              fill="none"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6 6 0 0 0-5-5.917V4a1 1 0 1 0-2 0v1.083A6 6 0 0 0 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0a3 3 0 0 1-6 0"
+              />
+            </svg>
+            <span class="hidden sm:inline ml-2">Alerts</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page content padding so it’s not hidden under the fixed navbar -->
+    <main class="pt-20 p-4">
+      <h1 class="text-3xl font-semibold">Page content starts here…</h1>
+    </main>
+  </body>
+</html>

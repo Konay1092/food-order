@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Scanner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div
+      class="w-full max-w-lg bg-white shadow-2xl rounded-2xl p-6 space-y-6 md:space-y-8"
+    >
+      <h1 class="text-2xl font-extrabold text-center text-gray-800">
+        📷 QR Code Scanner
+      </h1>
+
+      <!-- Scanner/Camera -->
+      <div
+        id="qr-reader"
+        class="w-full aspect-video md:aspect-square bg-black rounded-xl overflow-hidden flex items-center justify-center"
+      >
+        <p class="text-white text-sm md:text-base">Camera Loading...</p>
+      </div>
+
+      <!-- Result display -->
+      <div id="qr-result" class="text-center">
+        <p class="text-gray-500 text-sm md:text-base">
+          Scan a QR code to see the result below
+        </p>
+        <p
+          id="result-text"
+          class="mt-2 text-green-600 font-semibold break-words text-sm md:text-base"
+        ></p>
+      </div>
+
+      <!-- Optional: Manual Entry -->
+      <input
+        type="text"
+        placeholder="Or enter code manually"
+        class="w-full p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none text-sm md:text-base"
+      />
+    </div>
+  </body>
+</html>

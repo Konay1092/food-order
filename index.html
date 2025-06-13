@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dining Option</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-color: #fff;
+        color: #4b4b4b;
+        padding: 20px;
+      }
+      .container {
+        max-width: 500px;
+        width: 100%;
+        text-align: center;
+      }
+      .illustration {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        margin-bottom: 30px;
+      }
+      h1 {
+        color: #2e7d32;
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+      p {
+        font-size: 1rem;
+        margin-bottom: 30px;
+      }
+      .button {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        padding: 15px;
+        margin: 10px auto;
+        border: 2px solid #2e7d32;
+        border-radius: 10px;
+        background-color: white;
+        color: #2e7d32;
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .button:hover {
+        background-color: #e8f5e9;
+      }
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 1.5rem;
+        }
+        p {
+          font-size: 0.9rem;
+        }
+        .button {
+          font-size: 0.95rem;
+          padding: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img
+        src="/images/logo/logo.png"
+        alt="Chef Cooking Illustration"
+        class="illustration"
+      />
+      <h1>Welcome!</h1>
+      <p>Please choose your dining option: takeaway or dine-in.</p>
+      <button class="button" onclick="selectOption('dine-in')">
+        🍴 Dine - In
+      </button>
+      <button class="button" onclick="selectOption('takeaway')">
+        🛍 Takeaway
+      </button>
+    </div>
+
+    <script>
+      function selectOption(option) {
+        if (option === "takeaway") {
+          window.location.href = "home.html";
+        } else {
+          alert("You selected: " + option);
+          // Add navigation or further logic here for dine-in
+        }
+      }
+    </script>
+  </body>
+</html>
