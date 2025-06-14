@@ -78,9 +78,9 @@
     </nav>
 
     <!-- Main Layout -->
-    <div class="flex h-[calc(100vh-3.5rem)]">
+    <div class="flex h-[calc(100vh-5rem)]">
       <!-- Left Sidebar -->
-      <aside class="w-64 bg-white p-4 rounded-xl overflow-y-auto">
+      <aside class="w-18 md:w-32 lg:w-48 xl:w-64 bg-white p-4 rounded-xl overflow-y-auto">
         <h2 class="font-bold text-gray-600 text-xl mb-4 mt-4">Tables</h2>
         <ul class="space-y-2">
           <li
@@ -124,13 +124,13 @@
       >
         <h2 class="font-bold text-green-600 text-xl mb-4">Orders</h2>
         <!-- Order Summary -->
-        <section class="bg-white rounded-xl p-4 shadow space-y-4" id="order">
+        <section class="bg-white rounded-xl p-4 shadow space-y-4 w-fit xl:w-full md:w-full sm:w-fit " id="order">
           <div class="flex justify-between items-center">
             <h3 class="font-semibold text-lg">
               🎟️ Order No: <span class="font-bold">123456789</span>
             </h3>
             <div
-              class="text-sm px-3 py-1 rounded-full font-semibold bg-green-600 text-white"
+              class=" mx-4 text-sm px-3 py-1 rounded-full font-semibold bg-green-600 text-white"
             >
               Delivered
             </div>
@@ -205,27 +205,33 @@
             class="overflow-x-auto whitespace-nowrap pb-2 space-x-2 flex no-scrollbar"
           >
             <button
-              class="px-4 py-1 rounded-full bg-green-100 text-green-800 font-semibold"
+              class="menu-tab px-4 py-1 rounded-full bg-green-100 text-green-800 font-semibold" onclick="filterMenu('all')" data-tab="all"
+            >
+              All
+            </button>
+            <button
+              class="menu-tab px-4 py-1 rounded-full bg-gray-100 text-gray-700  font-semibold" onclick="filterMenu('foods')" data-tab="foods"
             >
               Foods
             </button>
             <button
-              class="px-4 py-1 rounded-full bg-gray-100 text-gray-700 font-semibold"
+              class="menu-tab px-4 py-1 rounded-full bg-gray-100 text-gray-700 font-semibold" onclick="filterMenu('cakes')" data-tab="cakes"
             >
               Cakes
             </button>
             <button
-              class="px-4 py-1 rounded-full bg-gray-100 text-gray-700 font-semibold"
+              class="menu-tab px-4 py-1 rounded-full bg-gray-100 text-gray-700 font-semibold"
+              onclick="filterMenu('drinks')" data-tab="drinks"
             >
               Drinks
             </button>
             <button
-              class="px-4 py-1 rounded-full bg-gray-100 text-gray-700 font-semibold"
+              class="menu-tab px-4 py-1 rounded-full bg-gray-100 text-gray-700 font-semibold" onclick="filterMenu('curry')" data-tab="curry"
             >
               Rice and Curry
             </button>
             <button
-              class="px-4 py-1 rounded-full bg-gray-100 text-gray-700 font-semibold"
+              class="menu-tab px-4 py-1 rounded-full bg-gray-100 text-gray-700 font-semibold" onclick="filterMenu('others')" data-tab="others"
             >
               Others
             </button>
@@ -233,9 +239,149 @@
 
           <!-- Menu Items -->
           <div
-            class="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[300px] overflow-y-auto no-scrollbar mt-4 pr-2"
+            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[300px] overflow-y-auto no-scrollbar mt-4 pr-2"
           >
-          <div class="bg-white p-4 rounded-lg shadow h-[13.5rem]">
+          <div class="w-fit bg-white p-4 rounded-lg shadow h-fit menu-item"  data-category="drinks">
+            <img
+              src="../images/logo/logo.png"
+              class="rounded-lg mb-2 w-full h-24 object-cover"
+            />
+            <h4 class="text-center font-semibold text-sm">Coca Cola</h4>
+            <h4 class="text-center text-sm">3,000 MMK</h4>
+            <button
+              onclick="addToCart('Coca Cola', 3000)"
+              class="mt-2 bg-green-600 text-white px-3 py-1 rounded-full w-full text-sm font-semibold hover:bg-green-700"
+            >
+              Add to Cart
+            </button>
+          </div>
+          <div class="w-fit bg-white p-4 rounded-lg shadow h-fit menu-item"  data-category="drinks">
+            <img
+              src="../images/logo/logo.png"
+              class="rounded-lg mb-2 w-full h-24 object-cover"
+            />
+            <h4 class="text-center font-semibold text-sm">Coca Cola</h4>
+            <h4 class="text-center text-sm">3,000 MMK</h4>
+            <button
+              onclick="addToCart('Coca Cola', 3000)"
+              class="mt-2 bg-green-600 text-white px-3 py-1 rounded-full w-full text-sm font-semibold hover:bg-green-700"
+            >
+              Add to Cart
+            </button>
+          </div>
+          <div class="w-fit bg-white p-4 rounded-lg shadow h-fit menu-item"  data-category="drinks">
+            <img
+              src="../images/logo/logo.png"
+              class="rounded-lg mb-2 w-full h-24 object-cover"
+            />
+            <h4 class="text-center font-semibold text-sm">Coca Cola</h4>
+            <h4 class="text-center text-sm">3,000 MMK</h4>
+            <button
+              onclick="addToCart('Coca Cola', 3000)"
+              class="mt-2 bg-green-600 text-white px-3 py-1 rounded-full w-full text-sm font-semibold hover:bg-green-700"
+            >
+              Add to Cart
+            </button>
+          </div>
+          <div class="w-fit bg-white p-4 rounded-lg shadow h-fit menu-item"  data-category="drinks">
+            <img
+              src="../images/logo/logo.png"
+              class="rounded-lg mb-2 w-full h-24 object-cover"
+            />
+            <h4 class="text-center font-semibold text-sm">Coca Cola</h4>
+            <h4 class="text-center text-sm">3,000 MMK</h4>
+            <button
+              onclick="addToCart('Coca Cola', 3000)"
+              class="mt-2 bg-green-600 text-white px-3 py-1 rounded-full w-full text-sm font-semibold hover:bg-green-700"
+            >
+              Add to Cart
+            </button>
+          </div>
+          <div class="w-fit bg-white p-4 rounded-lg shadow h-fit menu-item"  data-category="drinks">
+            <img
+              src="../images/logo/logo.png"
+              class="rounded-lg mb-2 w-full h-24 object-cover"
+            />
+            <h4 class="text-center font-semibold text-sm">Coca Cola</h4>
+            <h4 class="text-center text-sm">3,000 MMK</h4>
+            <button
+              onclick="addToCart('Coca Cola', 3000)"
+              class="mt-2 bg-green-600 text-white px-3 py-1 rounded-full w-full text-sm font-semibold hover:bg-green-700"
+            >
+              Add to Cart
+            </button>
+          </div>
+          <div class="w-fit bg-white p-4 rounded-lg shadow h-fit menu-item"  data-category="drinks">
+            <img
+              src="../images/logo/logo.png"
+              class="rounded-lg mb-2 w-full h-24 object-cover"
+            />
+            <h4 class="text-center font-semibold text-sm">Coca Cola</h4>
+            <h4 class="text-center text-sm">3,000 MMK</h4>
+            <button
+              onclick="addToCart('Coca Cola', 3000)"
+              class="mt-2 bg-green-600 text-white px-3 py-1 rounded-full w-full text-sm font-semibold hover:bg-green-700"
+            >
+              Add to Cart
+            </button>
+          </div>
+          <div class="w-fit bg-white p-4 rounded-lg shadow h-fit menu-item" data-category="foods">
+            <img
+              src="../images/logo/logo.png"
+              class="rounded-lg mb-2 w-full h-24 object-cover"
+            />
+            <h4 class="text-center font-semibold text-sm">Sliced Bread 2</h4>
+            <h4 class="text-center text-sm">3,000 MMK</h4>
+            <button
+              onclick="addToCart('Sliced Bread 2', 3000)"
+              class="mt-2 bg-green-600 text-white px-3 py-1 rounded-full w-full text-sm font-semibold hover:bg-green-700"
+            >
+              Add to Cart
+            </button>
+          </div>
+          <div class="w-fit bg-white p-4 rounded-lg shadow h-fit menu-item" data-category="foods">
+            <img
+              src="../images/logo/logo.png"
+              class="rounded-lg mb-2 w-full h-24 object-cover"
+            />
+            <h4 class="text-center font-semibold text-sm">Sliced Bread 2</h4>
+            <h4 class="text-center text-sm">3,000 MMK</h4>
+            <button
+              onclick="addToCart('Sliced Bread 2', 3000)"
+              class="mt-2 bg-green-600 text-white px-3 py-1 rounded-full w-full text-sm font-semibold hover:bg-green-700"
+            >
+              Add to Cart
+            </button>
+          </div>
+          <div class="w-fit bg-white p-4 rounded-lg shadow h-fit menu-item" data-category="cakes">
+            <img
+              src="../images/logo/logo.png"
+              class="rounded-lg mb-2 w-full h-24 object-cover"
+            />
+            <h4 class="text-center font-semibold text-sm">Sliced Bread 3</h4>
+            <h4 class="text-center text-sm">3,000 MMK</h4>
+            <button
+              onclick="addToCart('Sliced Bread 2', 3000)"
+              class="mt-2 bg-green-600 text-white px-3 py-1 rounded-full w-full text-sm font-semibold hover:bg-green-700"
+            >
+              Add to Cart
+            </button>
+          </div>
+          <div class="w-fit bg-white p-4 rounded-lg shadow h-fit menu-item" data-category="curry">
+            <img
+              src="../images/logo/logo.png"
+              class="rounded-lg mb-2 w-full h-24 object-cover"
+            />
+            <h4 class="text-center font-semibold text-sm">Sliced Bread 2</h4>
+            <h4 class="text-center text-sm">3,000 MMK</h4>
+            <button
+              onclick="addToCart('Sliced Bread 2', 3000)"
+              class="mt-2 bg-green-600 text-white px-3 py-1 rounded-full w-full text-sm font-semibold hover:bg-green-700"
+            >
+              Add to Cart
+            </button>
+          </div>
+          <div class="w-fit bg-white p-4 rounded-lg shadow h-fit menu-item" data-category="others">
             <img
               src="../images/logo/logo.png"
               class="rounded-lg mb-2 w-full h-24 object-cover"
@@ -248,8 +394,8 @@
             >
               Add to Cart
             </button>
-          </div>
-          <div class="bg-white p-4 rounded-lg shadow h-[13.5rem]">
+          </div >
+          <div class="w-fit bg-white p-4 rounded-lg shadow h-fit menu-item" data-category="others">
             <img
               src="../images/logo/logo.png"
               class="rounded-lg mb-2 w-full h-24 object-cover"
@@ -274,7 +420,7 @@
       <aside
         id="cartPanel"
         onclick="RemoveAddon()"
-        class="hidden w-72 bg-gray-100 p-6 border-l h-full overflow-y-auto"
+        class="hidden w-72 bg-gray-100 p-6 border-l h-full overflow-y-auto rounded-xl"
       >
       <div class="flex ">
         <h2 class="text-xl font-bold text-gray-800 mb-2 grow">Cart</h2>
@@ -324,10 +470,13 @@
   addOnBtn.style.display = "none";    
  }
     
-    function RemoveAddon() {
-      document.getElementById("addOnSection").classList.add("hidden");
-      document.getElementById("cartPanel").classList.add("hidden");
-    }
+  //   function RemoveAddon() {
+  //     document.getElementById("addOnSection").classList.add("hidden");
+  //     document.getElementById("cartPanel").classList.add("hidden");
+  // //     const addOnBtn = document.getElementById("add-on-btn");
+  // // addOnBtn.classList.remove("hidden");
+  // // addOnBtn.style.display = "block"; 
+  //   }
     
     function addToCart(itemName, price) {
       if (cart[itemName]) {
@@ -407,6 +556,10 @@
     
       if (hasOrder) {
         document.getElementById("order").classList.remove("hidden");
+        const addOnBtn = document.getElementById("add-on-btn");
+  addOnBtn.classList.remove("hidden");
+  addOnBtn.style.display = "block";     
+    document.getElementById("emptyOrderSection").classList.add("hidden");
       } else {
         document.getElementById("order").classList.add("hidden");
         document.getElementById("emptyOrderSection").classList.remove("hidden");
@@ -467,6 +620,33 @@
 
   selectTable(tableId);
 }
+
+function filterMenu(category) {
+  const items = document.querySelectorAll('.menu-item');
+  console.log(items,category)
+
+  items.forEach(item => {
+    if (category === 'all' || item.dataset.category === category) {
+      item.classList.remove('hidden');
+    } else {
+      item.classList.add('hidden');
+    }
+  });
+
+  // Optionally update tab styles
+  const buttons = document.querySelectorAll('.menu-tab');
+  buttons.forEach(btn => {
+    btn.classList.remove('bg-green-100', 'text-green-800');
+    btn.classList.add('bg-gray-100', 'text-gray-700');
+  });
+
+  const active = document.querySelector(`[data-tab="${category}"]`);
+  if (active) {
+    active.classList.remove('bg-gray-100', 'text-gray-700');
+    active.classList.add('bg-green-100', 'text-green-800');
+  }
+}
+
 
     </script>
   </body>
