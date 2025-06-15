@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order History</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Ensure html and body take full viewport height and hide global scrollbar */
+      html,
+      body {
+        height: 100%; /* Make html and body take 100% of the viewport height */
+        overflow: hidden; /* Hide the main browser scrollbar */
+      }
+
+      /* Custom scrollbar hiding for specific elements (like your content div) */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Edge (Chromium-based), Opera */
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge (legacy) */
+        scrollbar-width: none; /* Firefox */
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-white text-gray-800 min-h-screen flex flex-col">
+    <nav class="fixed inset-x-0 top-0 z-50 bg-white border-b border-green-200">
+      <div class="flex h-14 items-center justify-between px-4 sm:px-6">
+        <div class="flex items-center space-x-3">
+          <div class="h-9 w-9 rounded-full bg-black"></div>
+          <span class="text-xl font-extrabold text-green-700">Hello!</span>
+        </div>
+
+        <div class="flex items-center space-x-6">
+          <a
+            href="./home.html"
+            class="flex items-center hover:text-green-600 transition"
+          >
+            <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-10.5Z"
+              />
+            </svg>
+            <span class="hidden sm:inline ml-2">Home</span>
+          </a>
+
+          <a
+            href="./order_history.html"
+            class="flex items-center text-green-700 hover:text-green-600 transition"
+          >
+            <svg
+              class="h-6 w-6 stroke-current"
+              fill="none"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 4h16v16H4zm4 4h8m-8 4h8m-8 4h4"
+              />
+            </svg>
+            <span class="hidden sm:inline ml-2">Orders</span>
+          </a>
+
+          <a href="#" class="flex items-center hover:text-green-600 transition">
+            <svg
+              class="h-6 w-6 stroke-current"
+              fill="none"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6 6 0 0 0-5-5.917V4a1 1 0 1 0-2 0v1.083A6 6 0 0 0 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0a3 3 0 0 1-6 0"
+              />
+            </svg>
+            <span class="hidden sm:inline ml-2">Alerts</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flex-1 overflow-hidden">
+      <h1
+        class="text-3xl font-bold px-4 sm:px-6 py-4 bg-white z-20 fixed top-14 w-full border-b border-gray-200"
+      >
+        Order History
+      </h1>
+
+      <div class="h-full overflow-y-auto no-scrollbar px-4 sm:px-6 pt-[148px]">
+        <div class="font-bold text-lg mb-2.5">Today</div>
+        <div
+          class="bg-white rounded-xl p-4 mb-4 shadow-md"
+          onclick="{window.location.href='./order_details.html'}"
+        >
+          <div class="flex justify-between items-center mb-2.5">
+            <span class="font-bold">Order No: 123456789</span>
+            <span
+              class="px-3 py-1.5 rounded-full text-xs font-bold text-white bg-amber-500"
+              >Preparing Order</span
+            >
+          </div>
+          <div class="flex flex-col gap-2 mb-2.5">
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              4 × Croissant
+            </div>
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              2 × Brown Sugar Latte
+            </div>
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              2 × Chocolate Cake Slice
+            </div>
+          </div>
+          <div class="flex justify-between text-sm text-gray-600">
+            <span>22/04/2024 at 2PM</span>
+            <span>21000 MMK</span>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-4 mb-4 shadow-md">
+          <div class="flex justify-between items-center mb-2.5">
+            <span class="font-bold">Order No: 987654321</span>
+            <span
+              class="px-3 py-1.5 rounded-full text-xs font-bold text-white bg-green-700"
+              >Delivered</span
+            >
+          </div>
+          <div class="flex flex-col gap-2 mb-2.5">
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              1 × Americano
+            </div>
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              1 × Blueberry Muffin
+            </div>
+          </div>
+          <div class="flex justify-between text-sm text-gray-600">
+            <span>21/04/2024 at 10AM</span>
+            <span>12000 MMK</span>
+          </div>
+        </div>
+        <div class="font-bold text-lg mb-2.5">Yesterday</div>
+        <div class="bg-white rounded-xl p-4 mb-4 shadow-md">
+          <div class="flex justify-between items-center mb-2.5">
+            <span class="font-bold">Order No: 112233445</span>
+            <span
+              class="px-3 py-1.5 rounded-full text-xs font-bold text-white bg-green-700"
+              >Delivered</span
+            >
+          </div>
+          <div class="flex flex-col gap-2 mb-2.5">
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              3 × Espresso
+            </div>
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              1 × Cheesecake
+            </div>
+          </div>
+          <div class="flex justify-between text-sm text-gray-600">
+            <span>20/04/2024 at 5PM</span>
+            <span>15000 MMK</span>
+          </div>
+        </div>
+        <div class="font-bold text-lg mb-2.5">Last Week</div>
+        <div class="bg-white rounded-xl p-4 mb-4 shadow-md">
+          <div class="flex justify-between items-center mb-2.5">
+            <span class="font-bold">Order No: 667788990</span>
+            <span
+              class="px-3 py-1.5 rounded-full text-xs font-bold text-white bg-green-700"
+              >Delivered</span
+            >
+          </div>
+          <div class="flex flex-col gap-2 mb-2.5">
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              5 × Baguette
+            </div>
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              1 × Soup of the Day
+            </div>
+          </div>
+          <div class="flex justify-between text-sm text-gray-600">
+            <span>15/04/2024 at 1PM</span>
+            <span>18000 MMK</span>
+          </div>
+        </div>
+        <div class="font-bold text-lg mb-2.5">Older Orders</div>
+        <div class="bg-white rounded-xl p-4 mb-4 shadow-md">
+          <div class="flex justify-between items-center mb-2.5">
+            <span class="font-bold">Order No: 101010101</span>
+            <span
+              class="px-3 py-1.5 rounded-full text-xs font-bold text-white bg-green-700"
+              >Delivered</span
+            >
+          </div>
+          <div class="flex flex-col gap-2 mb-2.5">
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              2 × Sandwich
+            </div>
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              2 × Juice
+            </div>
+          </div>
+          <div class="flex justify-between text-sm text-gray-600">
+            <span>01/04/2024 at 9AM</span>
+            <span>16000 MMK</span>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-4 mb-4 shadow-md">
+          <div class="flex justify-between items-center mb-2.5">
+            <span class="font-bold">Order No: 202020202</span>
+            <span
+              class="px-3 py-1.5 rounded-full text-xs font-bold text-white bg-green-700"
+              >Delivered</span
+            >
+          </div>
+          <div class="flex flex-col gap-2 mb-2.5">
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              1 × Pizza Slice
+            </div>
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              1 × Soda
+            </div>
+          </div>
+          <div class="flex justify-between text-sm text-gray-600">
+            <span>25/03/2024 at 3PM</span>
+            <span>10000 MMK</span>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-4 mb-4 shadow-md">
+          <div class="flex justify-between items-center mb-2.5">
+            <span class="font-bold">Order No: 303030303</span>
+            <span
+              class="px-3 py-1.5 rounded-full text-xs font-bold text-white bg-green-700"
+              >Delivered</span
+            >
+          </div>
+          <div class="flex flex-col gap-2 mb-2.5">
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              2 × Muffin
+            </div>
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              2 × Tea
+            </div>
+          </div>
+          <div class="flex justify-between text-sm text-gray-600">
+            <span>10/03/2024 at 11AM</span>
+            <span>8000 MMK</span>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-4 mb-4 shadow-md">
+          <div class="flex justify-between items-center mb-2.5">
+            <span class="font-bold">Order No: 404040404</span>
+            <span
+              class="px-3 py-1.5 rounded-full text-xs font-bold text-white bg-green-700"
+              >Delivered</span
+            >
+          </div>
+          <div class="flex flex-col gap-2 mb-2.5">
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              1 × Salad
+            </div>
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              1 × Water
+            </div>
+          </div>
+          <div class="flex justify-between text-sm text-gray-600">
+            <span>05/03/2024 at 2PM</span>
+            <span>13000 MMK</span>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-4 mb-4 shadow-md">
+          <div class="flex justify-between items-center mb-2.5">
+            <span class="font-bold">Order No: 505050505</span>
+            <span
+              class="px-3 py-1.5 rounded-full text-xs font-bold text-white bg-green-700"
+              >Delivered</span
+            >
+          </div>
+          <div class="flex flex-col gap-2 mb-2.5">
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              2 × Cookies
+            </div>
+            <div>
+              <img
+                src="/images/logo/logo.png"
+                alt=""
+                class="w-9 h-9 rounded-lg object-cover"
+              />
+              2 × Milk
+            </div>
+          </div>
+          <div class="flex justify-between text-sm text-gray-600">
+            <span>28/02/2024 at 4PM</span>
+            <span>7000 MMK</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

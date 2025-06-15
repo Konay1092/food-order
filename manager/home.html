@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Takeaway Menu</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .no-scrollbar::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Edge (Chromium-based), Opera */
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      /* Styles for draggable tabs - direct Tailwind replacement is complex, keeping a small custom style */
+      .tabs.active {
+        cursor: grabbing;
+      }
+
+      /* Apply Inter font, as cdn.tailwindcss.com doesn't automatically load Google Fonts */
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-white p-4 h-full overflow-hidden">
+    <nav class="fixed inset-x-0 top-0 z-50 bg-white border-b border-green-200">
+      <div class="flex h-14 items-center justify-between px-4 sm:px-6">
+        <div class="flex items-center space-x-3">
+          <div class="h-9 w-9 rounded-full bg-white">
+            <img src="/images/logo/logo.png" alt="" srcset="" />
+          </div>
+          <span class="text-2xl font-extrabold text-green-700">Hello!</span>
+        </div>
+
+        <div class="flex items-center space-x-6">
+          <a
+            href="./home.html"
+            class="flex items-center text-green-700 hover:text-green-600 transition-colors duration-200 active"
+          >
+            <svg
+              class="h-6 w-6 stroke-current"
+              fill="none"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-10.5Z"
+              />
+            </svg>
+            <span class="hidden sm:inline ml-2">Home</span>
+          </a>
+
+          <a
+            href="./order_history.html"
+            class="flex items-center hover:text-green-600 transition-colors duration-200"
+          >
+            <svg
+              class="h-6 w-6 stroke-current"
+              fill="none"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 4h16v16H4zm4 4h8m-8 4h8m-8 4h4"
+              />
+            </svg>
+            <span class="hidden sm:inline ml-2">Orders</span>
+          </a>
+
+          <a
+            href="#"
+            class="flex items-center hover:text-green-600 transition-colors duration-200"
+          >
+            <svg
+              class="h-6 w-6 stroke-current"
+              fill="none"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6 6 0 0 0-5-5.917V4a1 1 0 1 0-2 0v1.083A6 6 0 0 0 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0a3 3 0 0 1-6 0"
+              />
+            </svg>
+            <span class="hidden sm:inline ml-2">Alerts</span>
+          </a>
+
+          <div class="relative w-max mx-auto">
+            <button
+              type="button"
+              id="dropdownToggle"
+              class="flex items-center rounded-full text-slate-900 text-sm font-medium border border-slate-300 outline-none hover:bg-slate-100 cursor-pointer"
+            >
+              <div class="h-9 w-9 rounded-full bg-gray-300">
+                <img src="/images/logo/logo.png" alt="" srcset="" />
+              </div>
+            </button>
+            <ul
+              id="dropdownMenu"
+              class="absolute hidden right-0 mt-2 shadow-lg bg-white py-2 z-[1000] w-48 sm:w-56 md:w-64 rounded-lg max-h-96"
+            >
+              <li
+                class="dropdown-item py-2.5 px-5 flex items-center hover:bg-slate-100 text-slate-900 text-sm cursor-pointer"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  class="w-4 h-4 mr-3"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M337.711 241.3a16 16 0 0 0-11.461 3.988c-18.739 16.561-43.688 25.682-70.25 25.682s-51.511-9.121-70.25-25.683a16.007 16.007 0 0 0-11.461-3.988c-78.926 4.274-140.752 63.672-140.752 135.224v107.152C33.537 499.293 46.9 512 63.332 512h385.336c16.429 0 29.8-12.707 29.8-28.325V376.523c-.005-71.552-61.831-130.95-140.757-135.223zM446.463 480H65.537V376.523c0-52.739 45.359-96.888 104.351-102.8C193.75 292.63 224.055 302.97 256 302.97s62.25-10.34 86.112-29.245c58.992 5.91 104.351 50.059 104.351 102.8zM256 234.375a117.188 117.188 0 1 0-117.188-117.187A117.32 117.32 0 0 0 256 234.375zM256 32a85.188 85.188 0 1 1-85.188 85.188A85.284 85.284 0 0 1 256 32z"
+                    data-original="#000000"
+                  ></path>
+                </svg>
+                View profile
+              </li>
+              <li
+                class="dropdown-item py-2.5 px-5 flex items-center hover:bg-slate-100 text-slate-900 text-sm cursor-pointer"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  class="w-4 h-4 mr-3"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M197.332 170.668h-160C16.746 170.668 0 153.922 0 133.332v-96C0 16.746 16.746 0 37.332 0h160c20.59 0 37.336 16.746 37.336 37.332v96c0 20.59-16.746 37.336-37.336 37.336zM37.332 32A5.336 5.336 0 0 0 32 37.332v96a5.337 5.337 0 0 0 5.332 5.336h160a5.338 5.338 0 0 0 5.336-5.336v-96A5.337 5.337 0 0 0 197.332 32zm160 480h-160C16.746 512 0 495.254 0 474.668v-224c0-20.59 16.746-37.336 37.332-37.336h160c20.59 0 37.336 16.746 37.336 37.336v224c0 20.586-16.746 37.332-37.336 37.332zm-160-266.668A5.337 5.337 0 0 0 32 250.668v224A5.336 5.336 0 0 0 37.332 480h160a5.337 5.337 0 0 0 5.336-5.332v-224a5.338 5.338 0 0 0-5.336-5.336zM474.668 512h-160c-20.59 0-37.336-16.746-37.336-37.332v-96c0-20.59 16.746-37.336 37.336-37.336h160c20.586 0 37.332 16.746 37.332 37.336v96C512 495.254 495.254 512 474.668 512zm-160-138.668a5.338 5.338 0 0 0-5.336 5.336v96a5.337 5.337 0 0 0 5.336 5.332h160a5.336 5.336 0 0 0 5.332-5.332v-96a5.337 5.337 0 0 0-5.332-5.336zm160-74.664h-160c-20.59 0-37.336-16.746-37.336-37.336v-224C277.332 16.746 294.078 0 314.668 0h160C495.254 0 512 16.746 512 37.332v224c0 20.59-16.746 37.336-37.332 37.336zM314.668 32a5.337 5.337 0 0 0-5.336 5.332v224a5.338 5.338 0 0 0 5.336 5.336h160a5.337 5.337 0 0 0 5.332-5.336v-224A5.336 5.336 0 0 0 474.668 32zm0 0"
+                    data-original="#000000"
+                  ></path>
+                </svg>
+                Dashboard
+              </li>
+              <li
+                class="dropdown-item py-2.5 px-5 flex items-center hover:bg-slate-100 text-slate-900 text-sm cursor-pointer"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  class="w-4 h-4 mr-3"
+                  viewBox="0 0 6.35 6.35"
+                >
+                  <path
+                    d="M3.172.53a.265.266 0 0 0-.262.268v2.127a.265.266 0 0 0 .53 0V.798A.265.266 0 0 0 3.172.53zm1.544.532a.265.266 0 0 0-.026 0 .265.266 0 0 0-.147.47c.459.391.749.973.749 1.626 0 1.18-.944 2.131-2.116 2.131A2.12 2.12 0 0 1 1.06 3.16c0-.65.286-1.228.74-1.62a.265.266 0 1 0-.344-.404A2.667 2.667 0 0 0 .53 3.158a2.66 2.66 0 0 0 2.647 2.663 2.657 2.657 0 0 0 2.645-2.663c0-.812-.363-1.542-.936-2.03a.265.266 0 0 0-.17-.066z"
+                    data-original="#000000"
+                  ></path>
+                </svg>
+                Logout
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flex-1 overflow-hidden">
+      <h1
+        class="text-2xl font-bold px-4 sm:px-6 py-4 bg-white z-20 fixed top-14 w-full border-b border-gray-200"
+      >
+        Menu
+      </h1>
+      <div
+        class="tabs flex gap-x-2 overflow-x-auto overflow-y-hidden py-2 px-4 sm:px-6 whitespace-nowrap max-w-full no-scrollbar user-select-none cursor-grab fixed top-[132px] w-full bg-white z-10"
+      >
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('foods')"
+        >
+          Foods
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('cakes')"
+        >
+          Cakes
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('drinks')"
+        >
+          Drinks
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('foods')"
+        >
+          Eats
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('cakes')"
+        >
+          Coffee
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('drinks')"
+        >
+          Dinner
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('foods')"
+        >
+          Eats
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('cakes')"
+        >
+          Coffee
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('drinks')"
+        >
+          Dinner
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('foods')"
+        >
+          Eats
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('cakes')"
+        >
+          Coffee
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('drinks')"
+        >
+          Dinner
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('foods')"
+        >
+          Foods
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('cakes')"
+        >
+          Cakes
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('drinks')"
+        >
+          Drinks
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('foods')"
+        >
+          Eats
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('cakes')"
+        >
+          Coffee
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('drinks')"
+        >
+          Dinner
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('foods')"
+        >
+          Eats
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('cakes')"
+        >
+          Coffee
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('drinks')"
+        >
+          Dinner
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('drinks')"
+        >
+          Dinner
+        </div>
+        <div
+          class="tab flex-none px-4 py-2 rounded-full bg-gray-200 cursor-pointer whitespace-nowrap scroll-snap-align-start user-select-none transition-colors duration-200"
+          onclick="filterMenu('drinks')"
+        >
+          Dinner
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="scroll-area mt-[180px] h-[calc(100vh-250px)] overflow-y-auto pb-20 no-scrollbar px-4 sm:px-6"
+    >
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
+        id="menu"
+      ></div>
+    </div>
+
+    <div
+      class="footer fixed bottom-0 left-0 w-full flex justify-between items-center px-4 sm:px-6 py-4 bg-green-700 text-white text-base hidden"
+      id="footer-bar"
+      onclick="goToCart()"
+    >
+      <div class="flex items-center">
+        <span
+          class="bg-white text-green-700 rounded-full px-2 py-1 mr-2 font-bold"
+          id="item-count"
+          >0</span
+        >
+        View your cart
+      </div>
+      <div id="cart-total">0 MMK</div>
+    </div>
+
+    <script>
+      const menuItems = [
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "foods"
+        },
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "cakes"
+        },
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "drinks"
+        },
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "foods"
+        },
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "foods"
+        },
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "foods"
+        },
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "foods"
+        },
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "cakes"
+        },
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "drinks"
+        },
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "foods"
+        },
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "foods"
+        },
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "foods"
+        },
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "foods"
+        },
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "cakes"
+        },
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "drinks"
+        },
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "foods"
+        },
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "foods"
+        },
+        {
+          name: "Sliced Bread",
+          price: 3000,
+          img: "/images/logo/logo.png",
+          category: "foods"
+        }
+      ];
+
+      let cartCount = 0;
+      let cartTotal = 0;
+
+      function renderMenu(filter = "foods") {
+        const menu = document.getElementById("menu");
+        menu.innerHTML = "";
+        menuItems
+          .filter((item) => item.category === filter)
+          .forEach((item, index) => {
+            const card = document.createElement("div");
+            // Tailwind classes for the card
+            card.className =
+              "card rounded-xl shadow-md overflow-hidden text-center p-2 bg-white relative";
+            card.innerHTML = `
+          <img src="${item.img}" alt="${
+              item.name
+            }" class="w-full rounded-lg mb-2" />
+          <div class="font-bold text-base my-1">${item.name}</div>
+          <div class="text-gray-600 mb-2">${item.price.toLocaleString()} MMK</div>
+          <div class="counter hidden flex items-center justify-between bg-gray-100 rounded-full py-1 px-3 w-28 mx-auto mb-2" id="counter-${index}">
+            <button onclick="updateQuantity(${index}, -1, ${
+              item.price
+            })" class="text-lg text-green-700 cursor-pointer border-none bg-transparent">−</button>
+            <span id="qty-${index}" class="font-bold text-green-700">1</span>
+            <button onclick="updateQuantity(${index}, 1, ${
+              item.price
+            })" class="text-lg text-green-700 cursor-pointer border-none bg-transparent">+</button>
+          </div>
+          <button class="btn bg-green-700 text-white py-2 px-4 rounded-full border-none w-full cursor-pointer font-bold mt-2" onclick="addToCart(${
+            item.price
+          }, ${index})" id="btn-${index}">Add to Cart</button>
+        `;
+            menu.appendChild(card);
+          });
+      }
+
+      function addToCart(price, index) {
+        const qty = parseInt(
+          document.getElementById(`qty-${index}`).textContent
+        );
+        cartCount += qty;
+        cartTotal += price * qty;
+        document.getElementById("item-count").textContent = cartCount;
+        document.getElementById(
+          "cart-total"
+        ).textContent = `${cartTotal.toLocaleString()} MMK`;
+        document.getElementById(`counter-${index}`).classList.remove("hidden");
+        document.getElementById(`counter-${index}`).classList.add("flex");
+        document.getElementById(`btn-${index}`).classList.add("hidden");
+        document.getElementById("footer-bar").classList.remove("hidden");
+        document.getElementById("footer-bar").classList.add("flex");
+      }
+
+      function updateQuantity(index, change, price) {
+        const qtyEl = document.getElementById(`qty-${index}`);
+        let qty = parseInt(qtyEl.textContent);
+        qty += change;
+        if (qty <= 0) {
+          document.getElementById(`counter-${index}`).classList.add("hidden");
+          document.getElementById(`counter-${index}`).classList.remove("flex");
+          document.getElementById(`btn-${index}`).classList.remove("hidden");
+          document.getElementById(`btn-${index}`).classList.add("block");
+          cartCount--; // Decrement cartCount as item is removed
+          cartTotal -= price; // Subtract price as item is removed
+        } else {
+          cartCount += change;
+          cartTotal += change * price;
+          qtyEl.textContent = qty;
+        }
+        document.getElementById("item-count").textContent = cartCount;
+        document.getElementById(
+          "cart-total"
+        ).textContent = `${cartTotal.toLocaleString()} MMK`;
+        if (cartCount === 0) {
+          document.getElementById("footer-bar").classList.add("hidden");
+          document.getElementById("footer-bar").classList.remove("flex");
+        }
+      }
+
+      function filterMenu(category) {
+        document.querySelectorAll(".tab").forEach((tab) => {
+          tab.classList.remove("bg-green-200", "text-green-700", "font-bold");
+          tab.classList.add("bg-gray-200");
+        });
+        const activeTab = document.querySelector(
+          `.tab[onclick*="${category}"]`
+        );
+        if (activeTab) {
+          activeTab.classList.add(
+            "bg-green-200",
+            "text-green-700",
+            "font-bold"
+          );
+          activeTab.classList.remove("bg-gray-200");
+        }
+        renderMenu(category);
+      }
+
+      renderMenu(); // Initial render
+
+      // Draggable tabs script
+      const tabs = document.querySelector(".tabs");
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      tabs.addEventListener("mousedown", (e) => {
+        isDown = true;
+        tabs.classList.add("active");
+        startX = e.pageX - tabs.offsetLeft;
+        scrollLeft = tabs.scrollLeft;
+      });
+
+      tabs.addEventListener("mouseleave", () => {
+        isDown = false;
+        tabs.classList.remove("active");
+      });
+
+      tabs.addEventListener("mouseup", () => {
+        isDown = false;
+        tabs.classList.remove("active");
+      });
+
+      tabs.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - tabs.offsetLeft;
+        const walk = (x - startX) * 1.5; // scroll speed
+        tabs.scrollLeft = scrollLeft - walk;
+      });
+
+      function goToCart() {
+        window.location.href = "cart.html"; // Change if path differs
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        let dropdownToggle = document.getElementById("dropdownToggle");
+        let dropdownMenu = document.getElementById("dropdownMenu");
+
+        function toggleDropdown() {
+          dropdownMenu.classList.toggle("hidden");
+          dropdownMenu.classList.toggle("block");
+        }
+
+        function hideDropdown() {
+          dropdownMenu.classList.add("hidden");
+          dropdownMenu.classList.remove("block");
+        }
+
+        dropdownToggle.addEventListener("click", (event) => {
+          event.stopPropagation(); // Prevents triggering document click
+          toggleDropdown();
+        });
+
+        // Hide dropdown when <li> is clicked
+        dropdownMenu.querySelectorAll(".dropdown-item").forEach((li) => {
+          li.addEventListener("click", () => {
+            hideDropdown();
+          });
+        });
+
+        // Hide dropdown when clicking outside
+        document.addEventListener("click", (event) => {
+          if (
+            !dropdownMenu.contains(event.target) &&
+            event.target !== dropdownToggle
+          ) {
+            hideDropdown();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
